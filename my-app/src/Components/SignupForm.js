@@ -3,17 +3,25 @@ import * as yup from 'yup';
 import axios from 'axios';
 import Users from '../Components/Users'
 
+
 //need name, email, password, terms of service checkbox and a submit button
 const formSchema = yup.object().shape({
-    name: yup.string().required("Name is a required field."),
+    name: yup
+    .string()
+    .min(5, "Name must be atleast 5 characters long.")
+    .required("Name is a required field."),
     email: yup
         .string()
         .email("Must be a valid e-mail address.")
         .required("Must include an e-mail address."),
     password: yup
     .string()
+    .min(8, "Password must be atleast 8 characters long.")
     .required("Must include a password."),
-    terms: yup.boolean().oneOf([true],"Please agree to the Terms of Service.")
+    terms: yup
+    .boolean()
+    .oneOf([true],"Please agree to the Terms of Service.")
+    .required("You must read and agree to the Tearms and Conditions.")
 });
 export default function SignupForm(){
     const [signupformState, setSignupFormState] = useState ({
@@ -65,7 +73,7 @@ export default function SignupForm(){
         e.preventDefault();
         console.log("Form Submitted!");
         axios
-        .post("", signupformState)
+        .post("like2learn-airbnb-api.herokuapp.com/creatnewuser", signupformState)
         .then(response => {
             console.log(response);
             setSignupUsers([...signupusers, response.data]);
@@ -73,9 +81,11 @@ export default function SignupForm(){
         })
         .catch(err => console.log(err))
     }; 
+
+    
 return(
-    <div id="container">
-    <form onSubmit={signupformSubmit}>
+    <div id="container" className= "signupcont">
+    <form onSubmit={signupformSubmit} className= "signup">
         <label htmlFor="name">
             Name:
             <input
@@ -136,5 +146,4 @@ return(
     </div>
 )
 };
-
 

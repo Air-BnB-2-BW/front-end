@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
-import styled from 'styled-components';
+
+
 
 //need  email, password and a submit button
 const formSchema = yup.object().shape({
@@ -11,13 +12,14 @@ const formSchema = yup.object().shape({
         .required("Must include an e-mail address."),
     password: yup
     .string()
+    .min(8, "Password must be 8 chracters long.")
     .required("Must include a password."),
    
 });
-export default function Form(){
+ export default function LoginForm(){
     const [formState, setFormState] = useState ({
         email: "",
-        password: "",
+        password: ""
     });
     const [buttonDisabled, setButtonDisabled] = useState(true);
     useEffect(()=> {
@@ -27,12 +29,12 @@ export default function Form(){
     }, [formState]);
     const [errorState, setErrorState] = useState({
         email: "",
-        password: "",
+        password: ""
       
     });
     const [users, setUsers] = useState([]);
     const validate = e => {
-        let value = 
+        let value = e.target.value;
             yup
             .reach(formSchema, e.target.name)
             .validate(value)
@@ -53,7 +55,7 @@ export default function Form(){
     const inputChange = e => {
         e.persist();
         validate(e);
-        let value = 
+        let value = e.target.value;
         setFormState({...formState, [e.target.name]: value});
     };
     
@@ -61,19 +63,19 @@ export default function Form(){
         e.preventDefault();
         console.log("Form Submitted!");
         axios
-        .post("", formState)
+        .post("like2learn-airbnb-api.herokuapp.com/login", formState)
         .then(response => {
             console.log(response);
             setUsers([...users, response.data]);
             setFormState({email:"",password:""});
         })
         .catch(err => console.log(err))
-    }; 
-return(
-    <div id="container">
-    <StyleForm onSubmit={formSubmit}>
+   }; 
+ return(
+    <div id="logincontainer" className= "logincointainer">
+    <form onSubmit={formSubmit} className= "loginform">
         <label htmlFor="email">
-          Email:
+          Email: 
             <input
                 type="email"
                 name="email"
@@ -99,43 +101,9 @@ return(
                 ):null}
         </label>
         <button id="submit" disabled={buttonDisabled}>Submit</button>
-    </StyleForm>
+    </form>
 
     </div>
-)
+ )
 };
 
-
-const StyleForm = styled.form`
-display:flex;
-flex-direction:column;
-justify-content:space-around;
-align-items:center;
-color:darkgreen;
-font-size:2rem;
-font-weight:bold;
-label{
-    padding: 10px 0px;
-}
-input{
-   margin-left: 20px;
-}
-button{
-    margin: 10px 0px;
-    color:seagreen;
-    border-color:darkgreen;
-    background:lightgreen;
-    padding:10px;
-    border-radius:30px;
-    font-size:20px;
-
-    :hover{
-        background:pink;
-        color:hotpink;
-        border-color:hotpink;
-    }
-}
-input:focus{
-    background:lightsalmon;
-}
-`;
