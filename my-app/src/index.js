@@ -6,7 +6,13 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 
-ReactDOM.render(<Router> <App /> </Router>, document.getElementById('root'));
+ReactDOM.render(
+    <Router>
+<React.StrictMode>
+    <App />
+    </React.StrictMode>
+    </Router>,
+    document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change
