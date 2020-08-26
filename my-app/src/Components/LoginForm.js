@@ -31,6 +31,31 @@ export default function Form(){
       
     });
     const [users, setUsers] = useState([]);
+    const validate = e => {
+        let value = 
+            yup
+            .reach(formSchema, e.target.name)
+            .validate(value)
+            .then(valid => {
+                setErrorState({
+                    ...errorState,
+                    [e.target.name]: ""
+                });
+            })
+            .catch(err => {
+                setErrorState({
+                    ...errorState,
+                    [e.target.name]: err.errors[0]
+                });
+            });
+    };
+
+    const inputChange = e => {
+        e.persist();
+        validate(e);
+        let value = 
+        setFormState({...formState, [e.target.name]: value});
+    };
     
     const formSubmit = e => {
         e.preventDefault();

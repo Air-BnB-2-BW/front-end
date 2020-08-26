@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
-import styled from 'styled-components';
+import Users from '../Components/Users'
 
 //need name, email, password, terms of service checkbox and a submit button
 const formSchema = yup.object().shape({
