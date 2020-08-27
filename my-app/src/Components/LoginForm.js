@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
-
+import formSchema from './validation/LoginFormSchema';
 
 
 //need  email, password and a submit button
-const formSchema = yup.object().shape({
-    email: yup
-        .string()
-        .email("Must be a valid e-mail address.")
-        .required("Must include an e-mail address."),
-    password: yup
-    .string()
-    .min(8, "Password must be 8 chracters long.")
-    .required("Must include a password."),
-   
-});
  export default function LoginForm(){
     const [formState, setFormState] = useState ({
         email: "",
@@ -72,7 +61,7 @@ const formSchema = yup.object().shape({
         .catch(err => console.log(err))
    }; 
  return(
-    <div id="logincontainer" className= "logincointainer">
+    <div id="logincontainer" className= "logincont">
     <form onSubmit={formSubmit} className= "loginform">
         <label htmlFor="email">
           Email: 
@@ -106,4 +95,3 @@ const formSchema = yup.object().shape({
     </div>
  )
 };
-

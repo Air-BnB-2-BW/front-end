@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: oldlace;
+  background-image: url("http://oecgreendevelopers.com/wp-content/gallery/villa-images/Russian-Log-Exterior-5276.JPG");
+  background-position: center;
 }
 
 code {

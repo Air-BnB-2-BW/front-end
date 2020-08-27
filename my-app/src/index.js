@@ -1,16 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
+import "react-datepicker/dist/react-datepicker.css";
 import * as serviceWorker from './serviceWorker';
 
 
-ReactDOM.render(
+render(
     <Router>
-<React.StrictMode>
     <App />
-    </React.StrictMode>
     </Router>,
     document.getElementById('root'));
 
