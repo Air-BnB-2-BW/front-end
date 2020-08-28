@@ -2,6 +2,7 @@ import React from 'react';
 import List from './ListPage'
 import ListingForm from './ListingForm';
 
+const noOp = (listing) => {}
 class Home extends React.Component{
     constructor() {
         super();
@@ -16,9 +17,11 @@ class Home extends React.Component{
             <br/>
             {this.state.message}
             <ListingForm/>
-            <List />
+            <List setEditing={noOp} />
         </div>;
     }
 }
 
 export default Home;
+
+//update and delete. 

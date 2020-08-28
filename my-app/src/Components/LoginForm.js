@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
 import formSchema from './validation/LoginFormSchema';
+import { baseURL } from '../api';
 
 
 //need  email, password and a submit button
@@ -52,9 +53,9 @@ import formSchema from './validation/LoginFormSchema';
         e.preventDefault();
         console.log("Form Submitted!");
         axios
-        .post("https://like2learn-airbnb-api.herokuapp.com/login", formState)
+        .post(`${baseURL}login`, formState)
         .then(response => {
-            console.log(response);
+            localStorage.setItem('token', response.token)
             setUsers([...users, response.data]);
             setFormState({email:"",password:""});
         })
