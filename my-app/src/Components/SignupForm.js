@@ -136,7 +136,7 @@ return(
                <p className="error">{signuperrorState.terms}</p>
            ):null}
         </label>
-        <button id="submit" disabled={signupbuttonDisabled}>Submit</button>
+        <button id="submit" type = "submit" >Submit</button>
     </form>
 
 
