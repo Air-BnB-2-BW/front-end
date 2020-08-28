@@ -1,8 +1,9 @@
 import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 import './App.css';
-import SignupForm from './Components/SignupForm'
+import SignupForm from './Components/SignupForm';
 import LoginForm from './Components/LoginForm';
+import Home from './Components/Home';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           </div>
         <nav>
           <div className="nav-links">
+            <Link to ="/">Home</Link>
             <Link to="/LoginForm">Log-In</Link>
             <Link to="/SignupForm">Sign-Up</Link>
           </div>
@@ -22,6 +24,9 @@ function App() {
         </header>
 
       <Switch>
+      <Route exact path="/">
+          <Home />
+        </Route>
         <Route exact path="/LoginForm">
           <LoginForm />
         </Route>
