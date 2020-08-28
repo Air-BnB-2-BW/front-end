@@ -52,7 +52,7 @@ import formSchema from './validation/LoginFormSchema';
         e.preventDefault();
         console.log("Form Submitted!");
         axios
-        .post("like2learn-airbnb-api.herokuapp.com/login", formState)
+        .post("https://like2learn-airbnb-api.herokuapp.com/login", formState)
         .then(response => {
             console.log(response);
             setUsers([...users, response.data]);

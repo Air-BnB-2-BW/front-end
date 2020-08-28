@@ -58,7 +58,7 @@ export default function SignupForm(){
         e.preventDefault();
         console.log("Form Submitted!");
         axios
-        .post("like2learn-airbnb-api.herokuapp.com/creatnewuser", signupformState)
+        .post("https://like2learn-airbnb-api.herokuapp.com/createnewuser", { password: signupformState.password, primaryemail: signupformState.email, username: signupformState.name })
         .then(response => {
             console.log(response);
             setSignupUsers([...signupusers, response.data]);
