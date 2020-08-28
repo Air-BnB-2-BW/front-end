@@ -9,7 +9,6 @@ export const getListings = () => {
       dispatch({ type: GET_LISTINGS, payload: { listings } });
     } catch (error) {
       console.log("error creating listing", error);
-      dispatch({ type: "GET_LISTINGS_ERROR", payload: { haha: "oopth" } });
     }
   }
   return thunk;
@@ -23,7 +22,6 @@ export const createListing = (args) => {
       dispatch({ type: CREATE_LISTING_SUCCESS, payload: { newListing } });
     } catch (error) {
       console.log("error creating listing", error);
-      dispatch({ type: "CREATE_LISTING_ERROR", payload: { haha: "oopth" } });
     }
   };
 };
