@@ -1,4 +1,6 @@
 import React from 'react';
+import List from './ListPage'
+import ListingForm from './ListingForm';
 
 class Home extends React.Component{
     constructor() {
@@ -13,6 +15,8 @@ class Home extends React.Component{
             {this.state.welcomemessage} 
             <br/>
             {this.state.message}
+            <ListingForm/>
+            <List />
         </div>;
     }
 }
